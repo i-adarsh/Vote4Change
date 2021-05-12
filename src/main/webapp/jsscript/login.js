@@ -17,11 +17,11 @@ function processResponse(responseText)
 {
     if(responseText.trim()==='error')
     {
-        swal("Access Denied","Invalid useri/passord","error"); 
+        swal("Access Denied","Invalid UserID/Password","error"); 
     }
     else if(responseText.trim().indexOf("jsessionid")!==-1)
     {
-        swal("Success","Login Successful","success").then((value)=>{
+        swal("Success","Login Successful","success").then((value)=>{ 
                 window.location=responseText.trim();
         });    
     }
