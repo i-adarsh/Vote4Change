@@ -40,20 +40,21 @@ public class RegistrationControllerServlet extends HttpServlet {
         user.setAddress(request.getParameter("address"));
         user.setCity(request.getParameter("city"));
         user.setEmail(request.getParameter("email"));
-        user.setMobile(Long.parseLong(request.getParameter("mobile")));
+        user.setMobile(request.getParameter("mobile"));
         user.setUserName(request.getParameter("username"));
         try {
             boolean result = false , userFound = false;
-            if (RegistrationDAO.searchUser(user.getUserID())){
+            if (!RegistrationDAO.searchUser(user.getUserID())){
                 result = RegistrationDAO.registerUser(user);
             }
             else{
                 userFound = true;
-                request.setAttribute("result", result);
-                request.setAttribute("userFound", userFound);
-                request.setAttribute("userName", user.getUserName());
-                rd = request.getRequestDispatcher("registrationResponse.jsp");
+                
             }
+            request.setAttribute("result", result);
+            request.setAttribute("userFound", userFound);
+            request.setAttribute("userName", user.getUserName());
+            rd = request.getRequestDispatcher("registrationResponse.jsp");
             
         }
         catch(SQLException ex){

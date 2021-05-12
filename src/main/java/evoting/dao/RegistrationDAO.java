@@ -36,7 +36,7 @@ public class RegistrationDAO {
         ps1.setString(4, user.getAddress());
         ps1.setString(5, user.getCity());
         ps1.setString(6, user.getEmail());
-        ps1.setLong(7, user.getMobile());
+        ps1.setString(7, user.getMobile());
         ps1.setString(8, "Voter");
         return ps1.executeUpdate() == 1;
     }

@@ -14,6 +14,7 @@ function addUser(){
     aadhar = $("#adhar").val();
     email = $("#email").val();
     mobile = $("#mobile").val();
+    
     if (validateUser) {
         if (password !== cpassword){
             swal("Error!", "Passwords do not match !!", "Error");
@@ -40,7 +41,7 @@ function addUser(){
 
 function processResponse(responseText, textStatus, xhr){
     let str = responseText.trim();
-    if (str === "success"){
+    if (str == "success"){
         swal("Success !", "Registration Done Successfully! You can now Login", "success");
         setTimeout(redirectUser, 3000);
     }
@@ -48,6 +49,7 @@ function processResponse(responseText, textStatus, xhr){
         swal("Error!", "Sorry the UserID is already Present !!", "error");
     }
     else{
+        alert(str);
         swal("Error!", "Registration Failed !! , Try Again", "error");
     }
     

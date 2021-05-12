@@ -48,11 +48,11 @@ public class UserDetails {
         this.address = address;
     }
 
-    public long getMobile() {
+    public String getMobile() {
         return mobile;
     }
 
-    public void setMobile(long mobile) {
+    public void setMobile(String mobile) {
         this.mobile = mobile;
     }
 
@@ -72,7 +72,7 @@ public class UserDetails {
         this.password = password;
     }
 
-    public UserDetails(String userName, String userID, String email, String address, long mobile, String city, String password) {
+    public UserDetails(String userName, String userID, String email, String address, String mobile, String city, String password) {
         this.userName = userName;
         this.userID = userID;
         this.email = email;
@@ -81,6 +81,7 @@ public class UserDetails {
         this.city = city;
         this.password = password;
     }
+
     public UserDetails(){
         
     }
@@ -88,7 +89,7 @@ public class UserDetails {
     private String userID;
     private String email;
     private String address;
-    private long mobile;
+    private String mobile;
     private String city;
     private String password;
 }
