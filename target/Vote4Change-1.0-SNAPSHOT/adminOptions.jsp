@@ -25,7 +25,10 @@
                 return;
             }
             StringBuffer displayBlock = new StringBuffer(
-            " <div class="s"  "
+            "<div class="sticky">  "
+            + " "sticky" "
+            + ""
+            + ""+""
             );
         %>
     </body>
