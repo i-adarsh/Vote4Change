@@ -1,7 +1,7 @@
 function redirectadministratorpage()
 {
     swal("Admin!","Redirecting To Admin Actions Page!","success").then(value=>{
-        window.location="adminactions.jsp";
+        window.location="adminActions.jsp";
     });
 }
 function redirectvotingpage()
