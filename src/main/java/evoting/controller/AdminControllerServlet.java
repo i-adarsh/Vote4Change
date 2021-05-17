@@ -48,7 +48,7 @@ public class AdminControllerServlet extends HttpServlet {
             rd = request.getRequestDispatcher("showException.jsp");
             request.setAttribute("Exception", ex);
         }finally{
-            rd.forward(request, response);
+            rd.forward(request, response); 
         }
     }
 
