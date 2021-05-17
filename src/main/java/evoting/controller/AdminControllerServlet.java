@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -32,7 +33,23 @@ public class AdminControllerServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher rd = null;
-        
+        HttpSession session = request.getSession();
+        try{
+            String userID = (String)session.getAttribute("userID");
+            if (userID == null){
+                session.invalidate();
+                response.sendRedirect("accessDenied.html");
+                return;
+            }
+            rd = request.getRequestDispatcher("adminOptions.jsp");
+            
+        }catch(Exception ex){
+            ex.printStackTrace();
+            rd = request.getRequestDispatcher("showException.jsp");
+            request.setAttribute("Exception", ex);
+        }finally{
+            rd.forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
