@@ -1,4 +1,7 @@
 evoting/controller/RegistrationControllerServlet.class
+evoting/dto/UserDTO.class
 evoting/dbutil/DBConnection.class
-evoting/dto/UserDetails.class
 evoting/dao/RegistrationDAO.class
+evoting/dto/UserDetails.class
+evoting/controller/LoginControllerServlet.class
+evoting/dao/UserDAO.class

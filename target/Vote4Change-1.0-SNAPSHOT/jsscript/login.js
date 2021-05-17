@@ -2,14 +2,14 @@ let userid,password;
 
 function connectUser()
 {
-    userid=$("#username").val();
-    password=$("#password").val();
-    if(validate()===false)
+    userid = $("#username").val();
+    password = $("#password").val();
+    if(validate() === false)
     {
-        swal("Access Denied","Please enter useri/passord","error");
+        swal("Access Denied","Please enter userID/Passord","error");
         return ;
     }
-    let data={userid:userid,password:password};
+    let data={userID:userid,password:password};
     let xhr=$.post("LoginControllerServlet",data,processResponse);
     xhr.fail(handleError);
 }
@@ -19,7 +19,7 @@ function processResponse(responseText)
     {
         swal("Access Denied","Invalid UserID/Password","error"); 
     }
-    else if(responseText.trim().indexOf("jsessionid")!==-1)
+    else if(responseText.trim().indexOf("jsessionid")!== -1)
     {
         swal("Success","Login Successful","success").then((value)=>{ 
                 window.location=responseText.trim();

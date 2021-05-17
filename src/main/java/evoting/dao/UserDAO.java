@@ -19,7 +19,7 @@ public class UserDAO {
     private static PreparedStatement ps;
     static{
         try{
-            ps = DBConnection.getConnection().prepareStatement("Select user_type from user_details where aadhar_no=?");
+            ps = DBConnection.getConnection().prepareStatement("Select user_type from user_details where aadhar_no=? and password=?");
             
         }
         catch (SQLException ex){
@@ -27,11 +27,15 @@ public class UserDAO {
         }
     }
     public static String validateUser(UserDTO user) throws SQLException{
+        System.out.println(user.getUserID());
         ps.setString(1, user.getUserID());
         ps.setString(2, user.getPassword());
         ResultSet rs = ps.executeQuery();
         if(rs.next()){
-            return rs.getString(1);
+            String s = rs.getString(1);
+            System.out.println(user);
+            System.out.println(s);
+            return s;
         }
         return null;
     }

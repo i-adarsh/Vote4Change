@@ -37,6 +37,7 @@ public class LoginControllerServlet extends HttpServlet {
         RequestDispatcher rd = null;
         String userID = request.getParameter("userID");
         String password = request.getParameter("password");
+        
         UserDTO user = new UserDTO(userID, password);
         try{
             String result = UserDAO.validateUser(user);

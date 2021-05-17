@@ -34,12 +34,12 @@ function addUser(){
                 mobile: mobile
             };
             let xhr = $.post("RegistrationControllerServlet", data, processResponse);
-            xhr.error(handleError);
+            xhr.fail(handleError);
         }
     }
 }
 
-function processResponse(responseText, textStatus, xhr){
+function processResponse(responseText){
     let str = responseText.trim();
     if (str == "success"){
         swal("Success !", "Registration Done Successfully! You can now Login", "success");
@@ -49,7 +49,6 @@ function processResponse(responseText, textStatus, xhr){
         swal("Error!", "Sorry the UserID is already Present !!", "error");
     }
     else{
-        alert(str);
         swal("Error!", "Registration Failed !! , Try Again", "error");
     }
     
