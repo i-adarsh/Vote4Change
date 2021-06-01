@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.json.JSONObject;
 
 /**
  *
@@ -57,9 +58,26 @@ public class AddCandidateControllerServlet extends HttpServlet {
             }
         }
         else if(usId != null){
-            String userName = CandidateDAO.getUserNameById(usId);
-            ArrayList<String> city = CandidateDAO.getCity();
-            
+            try{
+                String userName = CandidateDAO.getUserNameById(usId);
+                ArrayList<String> city = CandidateDAO.getCity();
+                JSONObject json = new JSONObject();
+                StringBuffer sb = new StringBuffer();
+                for (String c : city){
+                    sb.append("option value='"+c+"'>"+c+"</option>");
+                }
+                System.out.println(sb);
+                if (userName == null)
+                    userName = "wrong";
+                json.put("username", userName);
+                json.put("city", sb.toString());
+                out.println(json);
+            }
+            catch(SQLException ex){
+                RequestDispatcher rd = request.getRequestDispatcher("showException.jsp");
+                request.setAttribute("Exception", ex);
+                rd.forward(request, response);
+            }
         }
     }
 

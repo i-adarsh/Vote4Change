@@ -22,3 +22,23 @@ function managecandidate()
         window.location="managecandidate.jsp";
     });
 }
+
+function getdetails(e){
+    if (e.keyCode === 13){
+        data = (uid:$("#uid").val());
+        $.post("AddCandidateControllerServlet", data, function(responseText){
+            let details = JSON.parse(responseText);
+            let city = details.city;
+            let uname = details.username;
+            if (uname === "wrong"){
+                swal("Wrong Adhaar No!", "Adhaar no is invalid", "error");
+            }
+            else{
+                $("#cname").val(uname);
+                $("#city").empty();
+                $("#city").append(city);
+                $("#cname").prop("disabled", true);
+            }
+        });
+    }
+}

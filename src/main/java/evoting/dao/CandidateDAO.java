@@ -42,7 +42,7 @@ public class CandidateDAO {
     
     public static String getUserNameById(String uid) throws SQLException{
         ps1.setString(1, uid);
-        ResultSet rs = ps.executeQuery();
+        ResultSet rs = ps1.executeQuery();
         if (rs.next()){
             return rs.getString(1);
         }
