@@ -63,7 +63,12 @@ public class CandidateDAO {
     }
     
     public static boolean addCandidate(CandidateDTO obj) throws SQLException{
-        
+        ps3.setString(1, obj.getCandidateId());
+        ps3.setString(2, obj.getParty());
+        ps3.setString(3, obj.getUserid());
+        ps3.setBinaryStream(4, obj.getSymbol());
+        ps3.setString(5, obj.getCity());
+        return ps3.executeUpdate() != 0;
     }
     
 }
