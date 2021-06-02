@@ -20,6 +20,10 @@
         <servlet-name>AddCandidateControllerServlet</servlet-name>
         <servlet-class>evoting.controller.AddCandidateControllerServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddNewCandidateControllerServlet</servlet-name>
+        <servlet-class>evoting.controller.AddNewCandidateControllerServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegistrationControllerServlet</servlet-name>
         <url-pattern>/RegistrationControllerServlet</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>AddCandidateControllerServlet</servlet-name>
         <url-pattern>/AddCandidateControllerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddNewCandidateControllerServlet</servlet-name>
+        <url-pattern>/AddNewCandidateControllerServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
