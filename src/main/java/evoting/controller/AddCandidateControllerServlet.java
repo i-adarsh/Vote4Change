@@ -38,7 +38,7 @@ public class AddCandidateControllerServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession();
-        String userId = (String)session.getAttribute("userid");
+        String userId = (String)session.getAttribute("userId");
         if (userId == null){
             session.invalidate();
             response.sendRedirect("accessDenied.html");

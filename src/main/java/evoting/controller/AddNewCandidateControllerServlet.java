@@ -5,7 +5,11 @@
  */
 package evoting.controller;
 
+import evoting.dao.CandidateDAO;
+import evoting.dto.CandidateDTO;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -42,7 +46,44 @@ public class AddNewCandidateControllerServlet extends HttpServlet {
             ServletFileUpload sfu = new ServletFileUpload(df);  
             ServletRequestContext srq = new ServletRequestContext(request);
             List<FileItem> multiList = sfu.parseRequest(srq);
+            ArrayList<String> objValues = new ArrayList<String>();
+            InputStream inp = null;
+            for(FileItem fit : multiList){
+                if(fit.isFormField()){
+                    //Text Data
+                    String value = fit.getString();
+                    String fname = fit.getString();
+                    System.out.println("Inside If");
+                    System.out.println(fname + " : " + value);
+                    objValues.add(value);
+                }
+                else{
+                    //Image
+                    inp = fit.getInputStream();
+                    String key = fit.getFieldName();
+                    String fileName = fit.getName();
+                    System.out.println("Inside Else");
+                    System.out.println(key + " : " + fileName);
                     
+                }
+            }
+            CandidateDTO candidate = new CandidateDTO(objValues.get(0), objValues.get(3), objValues.get(4), objValues.get(1), inp);
+            boolean result = CandidateDAO.addCandidate(candidate);
+            if (result){
+                rd = request.getRequestDispatcher("success.jsp");
+            }
+            else{
+                rd = request.getRequestDispatcher("failure.jsp");
+            }
+        }
+        catch (Exception ex){
+            System.out.println("Exception in AddNewCandidateController");
+            ex.printStackTrace(); 
+        }
+        finally{
+            if (rd != null){
+                rd.forward(request, response);
+            }
         }
     }
 

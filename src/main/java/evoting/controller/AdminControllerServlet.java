@@ -41,6 +41,8 @@ public class AdminControllerServlet extends HttpServlet {
                 response.sendRedirect("accessDenied.html");
                 return;
             }
+            System.out.println("AdminControllerServlet");
+            System.out.println(userID);
             rd = request.getRequestDispatcher("adminOptions.jsp");
             
         }catch(Exception ex){
@@ -48,7 +50,8 @@ public class AdminControllerServlet extends HttpServlet {
             rd = request.getRequestDispatcher("showException.jsp");
             request.setAttribute("Exception", ex);
         }finally{
-            rd.forward(request, response); 
+            if (rd != null)
+                rd.forward(request, response); 
         }
     }
 
