@@ -7,23 +7,33 @@ package evoting.dao;
 
 import evoting.dbutil.DBConnection;
 import evoting.dto.CandidateDTO;
+import evoting.dto.CandidateDetails;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Base64;
 
 /**
  *
  * @author adarshkumar
  */
 public class CandidateDAO {
-    private static PreparedStatement ps, ps1, ps2, ps3;
+    private static PreparedStatement ps, ps1, ps2, ps3, ps4;
+    private static Statement st;
+    
     static{
         try{
+            st = DBConnection.getConnection().createStatement();
             ps = DBConnection.getConnection().prepareStatement("Select count(*) from candidate");
             ps1 = DBConnection.getConnection().prepareStatement("Select username from user_details where aadhar_no=?");
             ps2 = DBConnection.getConnection().prepareStatement("Select distinct city from user_details");
             ps3 = DBConnection.getConnection().prepareStatement("insert into candidate values(?,?,?,?,?)");
+            ps4 = DBConnection.getConnection().prepareStatement("Select * from candidate where candidate_id=?");
         }
         catch (SQLException ex){
             ex.printStackTrace();
@@ -69,6 +79,49 @@ public class CandidateDAO {
         ps3.setBinaryStream(4, obj.getSymbol());
         ps3.setString(5, obj.getCity());
         return ps3.executeUpdate() != 0;
+    }
+    
+    public static ArrayList<String> getCandidateId() throws SQLException{
+        ArrayList <String> candidateIdList = new ArrayList<>();
+        ResultSet rs = st.executeQuery("select candidate_id from candidate");
+        while(rs.next()){
+            candidateIdList.add(rs.getString(1));
+        }
+        return candidateIdList;
+    }
+    
+    public static CandidateDetails getDetailsById(String cid) throws Exception {
+        ps4.setString(1, cid);
+        ResultSet rs = ps4.executeQuery();
+        CandidateDetails cd = new CandidateDetails();
+        Blob blob;
+        InputStream inputStream;
+        byte [] buffer;
+        byte [] imageBytes;
+        int bytesRead;
+        String base64Image;
+        ByteArrayOutputStream outputStream; 
+        if (rs.next()){
+            blob = rs.getBlob(4);
+            inputStream = blob.getBinaryStream();
+            outputStream = new ByteArrayOutputStream();
+            buffer = new byte[4096];
+            bytesRead = -1;
+            while((bytesRead=inputStream.read(buffer))!= -1){
+                outputStream.write(buffer, 0, bytesRead);
+            }
+            imageBytes = outputStream.toByteArray();
+            Base64.Encoder en = Base64.getEncoder();
+            base64Image = en.encodeToString(imageBytes);
+            cd.setSymbol(base64Image);
+            cd.setCandidateId(cid);
+            cd.setCandidateNAme(getUserNameById(rs.getString(3)));
+            cd.setParty(rs.getString(2));
+            cd.setCity(rs.getString(5));
+            cd.setUserId(rs.getString(3)); 
+            
+        }
+        return cd;
     }
     
 }

@@ -114,12 +114,12 @@ function redirectvotingpage()
 function manageuser()
 {
     swal("Admin!","Redirecting To User Management Page!","success").then(value=>{
-        window.location="manageuser.jsp";
+        window.location="manageUser.jsp";
     });
 }
 function managecandidate()
 {
     swal("Admin!","Redirecting To Candidate Management Page!","success").then(value=>{
-        window.location="managecandidate.jsp";
+        window.location="manageCandidate.jsp";
     });
 }
