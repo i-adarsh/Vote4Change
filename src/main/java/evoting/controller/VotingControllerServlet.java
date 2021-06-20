@@ -5,8 +5,11 @@
  */
 package evoting.controller;
 
+import evoting.dao.CandidateDAO;
+import evoting.dao.VoteDAO;
+import evoting.dto.CandidateInfo;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -31,17 +34,35 @@ public class VotingControllerServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//                RequestDispatcher requestDispatcher = null;
-//                HttpSession session = request.getSession();
-//                String userID = (String)session.getAttribute("userID");
-//                if (userID == null){
-//                    session.invalidate();
-//                    response.sendRedirect("accessDenied.html");
-//                    return;
-//                }
-//                try{
-//                    
-//                }
+                RequestDispatcher rd = null;
+                HttpSession session = request.getSession();
+                String userID = (String)session.getAttribute("userID");
+                if (userID == null){
+                    session.invalidate();
+                    response.sendRedirect("accessDenied.html");
+                    return;
+                } 
+                try{
+                    String cid = VoteDAO.getCandidateId(userID);
+                    if (cid == null){
+                        ArrayList<CandidateInfo> candidateList = CandidateDAO.viewCandidate(userID);
+                        request.setAttribute("candidateList", candidateList);
+                        rd = request.getRequestDispatcher("showCandidate.jsp");
+                    }
+                    else{
+                        CandidateInfo candidate = VoteDAO.getVote(cid);
+                        request.setAttribute("candidate", candidate);
+                        rd = request.getRequestDispatcher("voteDenied.jsp");
+                    }
+                }
+                catch(Exception ex){
+                    ex.printStackTrace();
+                    request.setAttribute("Exception", ex);
+                    rd = request.getRequestDispatcher("showException.jsp");
+                }
+                finally{
+                    rd.forward(request, response);
+                }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -27,7 +27,7 @@ public class VoteDAO {
     static{
         try{
             ps1 = DBConnection.getConnection().prepareStatement("Select candidate_id from voting where voter_id=?");
-            ps2 = DBConnection.getConnection().prepareStatement("Select candidate_id,username,symbol from candidate,user_details where candidate.user_id=user_details.aadhar_no and candidate.candidate_id");
+            ps2 = DBConnection.getConnection().prepareStatement("Select candidate_id,username,symbol from candidate,user_details where candidate.user_id=user_details.aadhar_no and candidate.candidate_id=?");
             //and ki jagah where
             ps3 = DBConnection.getConnection().prepareStatement("Insert into voting values(?,?)");
         }
