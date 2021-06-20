@@ -42,7 +42,6 @@ public class AdminControllerServlet extends HttpServlet {
                 return;
             }
             System.out.println("AdminControllerServlet");
-            System.out.println(userID);
             rd = request.getRequestDispatcher("adminOptions.jsp");
             
         }catch(Exception ex){

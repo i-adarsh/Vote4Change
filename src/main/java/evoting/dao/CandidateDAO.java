@@ -8,6 +8,7 @@ package evoting.dao;
 import evoting.dbutil.DBConnection;
 import evoting.dto.CandidateDTO;
 import evoting.dto.CandidateDetails;
+import evoting.dto.CandidateInfo;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.sql.Blob;
@@ -23,7 +24,7 @@ import java.util.Base64;
  * @author adarshkumar
  */
 public class CandidateDAO {
-    private static PreparedStatement ps, ps1, ps2, ps3, ps4;
+    private static PreparedStatement ps, ps1, ps2, ps3, ps4,ps5;
     private static Statement st;
     
     static{
@@ -34,6 +35,7 @@ public class CandidateDAO {
             ps2 = DBConnection.getConnection().prepareStatement("Select distinct city from user_details");
             ps3 = DBConnection.getConnection().prepareStatement("insert into candidate values(?,?,?,?,?)");
             ps4 = DBConnection.getConnection().prepareStatement("Select * from candidate where candidate_id=?");
+            ps5 = DBConnection.getConnection().prepareStatement("select candidate_id, username,party,symbol from candidate,user_details where candidate.user_id=user_details.aadhar_no and candidate.city=(select city from user_Details where aadhar_no=?)");
         }
         catch (SQLException ex){
             ex.printStackTrace();
@@ -91,6 +93,7 @@ public class CandidateDAO {
     }
     
     public static CandidateDetails getDetailsById(String cid) throws Exception {
+        
         ps4.setString(1, cid);
         ResultSet rs = ps4.executeQuery();
         CandidateDetails cd = new CandidateDetails();
@@ -120,8 +123,43 @@ public class CandidateDAO {
             cd.setCity(rs.getString(5));
             cd.setUserId(rs.getString(3)); 
             
+            return cd;
+            
         }
-        return cd;
+        return null;
+    }
+    
+    public static ArrayList<CandidateInfo> viewCandidate (String aadhar_no) throws Exception{
+        ArrayList<CandidateInfo> candidateList = new ArrayList<CandidateInfo>();
+        ps5.setString(1, aadhar_no);
+        ResultSet rs = ps5.executeQuery();
+        Blob blob;
+        InputStream inputStream;
+        byte [] buffer;
+        byte [] imageBytes;
+        int bytesRead;
+        String base64Image;
+        ByteArrayOutputStream outputStream;
+        while(rs.next()){
+            blob = rs.getBlob(4);
+            inputStream = blob.getBinaryStream();
+            outputStream = new ByteArrayOutputStream();
+            buffer = new byte[4096];
+            bytesRead = -1;
+            while((bytesRead=inputStream.read(buffer))!= -1){
+                outputStream.write(buffer, 0, bytesRead);
+            }
+            imageBytes = outputStream.toByteArray();
+            Base64.Encoder en = Base64.getEncoder();
+            base64Image = en.encodeToString(imageBytes);
+            CandidateInfo candidate = new CandidateInfo();
+            candidate.setSymbol(base64Image);
+            candidate.setCandidateId(rs.getString(1));
+            candidate.setCandidateName(rs.getString(2));
+            candidate.setParty(rs.getString(3));
+            candidateList.add(candidate);
+        }
+        return candidateList;
     }
     
 }

@@ -1,13 +1,17 @@
 /Users/adarshkumar/Documents/NetBeansProjects/Vote4Change/Vote4Change/src/main/java/evoting/controller/AddCandidateControllerServlet.java
 /Users/adarshkumar/Documents/NetBeansProjects/Vote4Change/Vote4Change/src/main/java/evoting/dto/CandidateDetails.java
 /Users/adarshkumar/Documents/NetBeansProjects/Vote4Change/Vote4Change/src/main/java/evoting/dto/CandidateDTO.java
+/Users/adarshkumar/Documents/NetBeansProjects/Vote4Change/Vote4Change/src/main/java/evoting/dao/VoteDAO.java
 /Users/adarshkumar/Documents/NetBeansProjects/Vote4Change/Vote4Change/src/main/java/evoting/controller/ShowCandidateControllerServlet.java
+/Users/adarshkumar/Documents/NetBeansProjects/Vote4Change/Vote4Change/src/main/java/evoting/controller/VotingControllerServlet.java
 /Users/adarshkumar/Documents/NetBeansProjects/Vote4Change/Vote4Change/src/main/java/evoting/dao/CandidateDAO.java
+/Users/adarshkumar/Documents/NetBeansProjects/Vote4Change/Vote4Change/src/main/java/evoting/dto/VoteDTO.java
 /Users/adarshkumar/Documents/NetBeansProjects/Vote4Change/Vote4Change/src/main/java/evoting/dbutil/DBConnection.java
 /Users/adarshkumar/Documents/NetBeansProjects/Vote4Change/Vote4Change/src/main/java/evoting/dao/RegistrationDAO.java
 /Users/adarshkumar/Documents/NetBeansProjects/Vote4Change/Vote4Change/src/main/java/evoting/controller/LoginControllerServlet.java
 /Users/adarshkumar/Documents/NetBeansProjects/Vote4Change/Vote4Change/src/main/java/evoting/dto/UserDetails.java
 /Users/adarshkumar/Documents/NetBeansProjects/Vote4Change/Vote4Change/src/main/java/evoting/dao/UserDAO.java
+/Users/adarshkumar/Documents/NetBeansProjects/Vote4Change/Vote4Change/src/main/java/evoting/dto/CandidateInfo.java
 /Users/adarshkumar/Documents/NetBeansProjects/Vote4Change/Vote4Change/src/main/java/evoting/controller/AddNewCandidateControllerServlet.java
 /Users/adarshkumar/Documents/NetBeansProjects/Vote4Change/Vote4Change/src/main/java/evoting/dto/UserDTO.java
 /Users/adarshkumar/Documents/NetBeansProjects/Vote4Change/Vote4Change/src/main/java/evoting/controller/AdminControllerServlet.java

@@ -28,6 +28,10 @@
         <servlet-name>ShowCandidateControllerServlet</servlet-name>
         <servlet-class>evoting.controller.ShowCandidateControllerServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>VotingControllerServlet</servlet-name>
+        <servlet-class>evoting.controller.VotingControllerServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegistrationControllerServlet</servlet-name>
         <url-pattern>/RegistrationControllerServlet</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>ShowCandidateControllerServlet</servlet-name>
         <url-pattern>/ShowCandidateControllerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VotingControllerServlet</servlet-name>
+        <url-pattern>/VotingControllerServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -7,8 +7,12 @@ evoting/dao/CandidateDAO.class
 evoting/dto/CandidateDetails.class
 evoting/dao/RegistrationDAO.class
 evoting/dto/CandidateDTO.class
+evoting/controller/VotingControllerServlet.class
+evoting/dto/CandidateInfo.class
 evoting/dao/UserDAO.class
 evoting/controller/AdminControllerServlet.class
+evoting/dao/VoteDAO.class
 evoting/dto/UserDetails.class
 evoting/controller/AddCandidateControllerServlet.class
 evoting/controller/LoginControllerServlet.class
+evoting/dto/VoteDTO.class

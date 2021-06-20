@@ -4,23 +4,25 @@
     Author     : adarshkumar
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="jsscript/adminoptions.js"></script>
-<script src="jsscript/jquery.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous"></script>
-    <link href="stylesheet/registration.css" rel="stylesheet">
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<link href="stylesheet/backgroundimage.css" rel="stylesheet">
-<link href="stylesheet/pageheader.css" rel="stylesheet">
-<link href="stylesheet/admin.css" rel="stylesheet">
-<title>Admin Options</title>
-</head>
-<body>
-<%
+    <%@page contentType="text/html" pageEncoding="UTF-8"%>
+        <!DOCTYPE html>
+        <html>
+
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            <script src="jsscript/adminoptions.js"></script>
+            <script src="jsscript/jquery.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous"></script>
+            <link href="stylesheet/registration.css" rel="stylesheet">
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+            <link href="stylesheet/backgroundimage.css" rel="stylesheet">
+            <link href="stylesheet/pageheader.css" rel="stylesheet">
+            <link href="stylesheet/admin.css" rel="stylesheet">
+            <title>Admin Options</title>
+        </head>
+
+        <body>
+            <%
             String userid=(String)session.getAttribute("userID");
             if(userid==null)
             {
@@ -37,5 +39,6 @@ response.sendRedirect("accessDenied.html");
         displayBlock.append("<br><br><div align='center' id='result'></div>");
         out.println(displayBlock);
         %>
-</body>
-</html>
+        </body>
+
+        </html>

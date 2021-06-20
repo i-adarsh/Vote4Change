@@ -27,13 +27,11 @@ public class UserDAO {
         }
     }
     public static String validateUser(UserDTO user) throws SQLException{
-        System.out.println(user.getUserID());
         ps.setString(1, user.getUserID());
         ps.setString(2, user.getPassword());
         ResultSet rs = ps.executeQuery();
         if(rs.next()){
             String s = rs.getString(1);
-            System.out.println(user);
             System.out.println(s);
             return s;
         }

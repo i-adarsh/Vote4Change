@@ -35,6 +35,12 @@
         <version>1.0</version>
         </dependency>
         
+        <dependency>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>1.4</version>
+        </dependency>
+        
         <!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
         <dependency>
         <groupId>commons-fileupload</groupId>

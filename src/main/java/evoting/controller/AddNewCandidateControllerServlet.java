@@ -17,7 +17,9 @@ import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.*;
 import org.apache.commons.fileupload.FileItem;
+
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.fileupload.servlet.ServletRequestContext;
@@ -67,6 +69,9 @@ public class AddNewCandidateControllerServlet extends HttpServlet {
                     
                 }
             }
+            for (int i = 0; i < objValues.size(); i++){
+                System.out.println(objValues.get(i));
+            }
             CandidateDTO candidate = new CandidateDTO(objValues.get(0), objValues.get(3), objValues.get(4), objValues.get(1), inp);
             boolean result = CandidateDAO.addCandidate(candidate);
             if (result){
@@ -113,7 +118,7 @@ public class AddNewCandidateControllerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+            processRequest(request, response);
     }
 
     /**

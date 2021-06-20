@@ -36,13 +36,14 @@ public class ShowCandidateControllerServlet extends HttpServlet {
             throws ServletException, IOException {
         RequestDispatcher rd = null;
         HttpSession sess = request.getSession();
-        String userid = (String)sess.getAttribute("userid");
+        String userid = (String)sess.getAttribute("userID");
         if (userid == null){
             sess.invalidate();
             response.sendRedirect("accessDenied.html");
             return;
         }
         String data = request.getParameter("data");
+        
         try {
             if (data != null && data.equalsIgnoreCase("cid")){
                 ArrayList<String> candidateList = CandidateDAO.getCandidateId();
@@ -50,8 +51,9 @@ public class ShowCandidateControllerServlet extends HttpServlet {
                 request.setAttribute("result", "candidatelist");
             }
             else{
+                System.out.println(data);
                 CandidateDetails cd = CandidateDAO.getDetailsById(data);
-                request.setAttribute("candidateid", cd);
+                request.setAttribute("candidate", cd);
                 request.setAttribute("result", "details");
             }
             rd = request.getRequestDispatcher("adminShowCandidate.jsp");

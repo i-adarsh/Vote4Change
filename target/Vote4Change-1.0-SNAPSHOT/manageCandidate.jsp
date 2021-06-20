@@ -4,24 +4,26 @@
     Author     : adarshkumar
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="jsscript/adminoptions.js"></script>
-<script src="jsscript/jquery.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<link href="stylesheet/backgroundimage.css" rel="stylesheet">
-<link href="stylesheet/pageheader.css" rel="stylesheet">
-<link href="stylesheet/admin.css" rel="stylesheet">
-<title>manage candidate</title>
-</head>
-<body>
-<%
+    <%@page contentType="text/html" pageEncoding="UTF-8"%>
+        <html>
+
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            <script src="jsscript/adminoptions.js"></script>
+            <script src="jsscript/jquery.js"></script>
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+            <link href="stylesheet/backgroundimage.css" rel="stylesheet">
+            <link href="stylesheet/pageheader.css" rel="stylesheet">
+            <link href="stylesheet/admin.css" rel="stylesheet">
+            <title>manage candidate</title>
+        </head>
+
+        <body>
+            <%
             String userid=(String)session.getAttribute("userID");
             if(userid==null)
             {
-response.sendRedirect("accessdenied.html");
+response.sendRedirect("accessDenied.html");
                 return;
             }
         StringBuffer displayBlock=new StringBuffer("");
@@ -45,5 +47,6 @@ response.sendRedirect("accessdenied.html");
         displayBlock.append("<br><br><div align='center' id='result'></div>");
         out.println(displayBlock);
                 %>
-</body>
-</html>
+        </body>
+
+        </html>
