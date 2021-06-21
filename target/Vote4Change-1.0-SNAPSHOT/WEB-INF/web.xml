@@ -36,6 +36,10 @@
         <servlet-name>AddVoteControllerServlet</servlet-name>
         <servlet-class>evoting.controller.AddVoteControllerServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ElectionResultControllerServlet</servlet-name>
+        <servlet-class>evoting.controller.ElectionResultControllerServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegistrationControllerServlet</servlet-name>
         <url-pattern>/RegistrationControllerServlet</url-pattern>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>AddVoteControllerServlet</servlet-name>
         <url-pattern>/AddVoteControllerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ElectionResultControllerServlet</servlet-name>
+        <url-pattern>/ElectionResultControllerServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

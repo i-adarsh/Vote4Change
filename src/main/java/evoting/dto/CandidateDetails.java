@@ -5,11 +5,58 @@
  */
 package evoting.dto;
 
+import java.util.Objects;
+
 /**
  *
  * @author adarshkumar
  */
 public class CandidateDetails {
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.CandidateId);
+        hash = 53 * hash + Objects.hashCode(this.userId);
+        hash = 53 * hash + Objects.hashCode(this.candidateName);
+        hash = 53 * hash + Objects.hashCode(this.symbol);
+        hash = 53 * hash + Objects.hashCode(this.party);
+        hash = 53 * hash + Objects.hashCode(this.city);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final CandidateDetails other = (CandidateDetails) obj;
+        if (!Objects.equals(this.CandidateId, other.CandidateId)) {
+            return false;
+        }
+        if (!Objects.equals(this.userId, other.userId)) {
+            return false;
+        }
+        if (!Objects.equals(this.candidateName, other.candidateName)) {
+            return false;
+        }
+        if (!Objects.equals(this.symbol, other.symbol)) {
+            return false;
+        }
+        if (!Objects.equals(this.party, other.party)) {
+            return false;
+        }
+        if (!Objects.equals(this.city, other.city)) {
+            return false;
+        }
+        return true;
+    }
 
     @Override
     public String toString() {
