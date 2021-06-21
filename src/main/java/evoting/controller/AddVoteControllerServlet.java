@@ -5,6 +5,9 @@
  */
 package evoting.controller;
 
+import evoting.dao.VoteDAO;
+import evoting.dto.CandidateInfo;
+import evoting.dto.VoteDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -12,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,6 +35,33 @@ public class AddVoteControllerServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher rd = null;
+        HttpSession session = request.getSession();
+        String userID = (String)session.getAttribute("userID");
+        if (userID == null){
+            session.invalidate();
+            response.sendRedirect("accessDenied.html");
+            return;
+        }
+        try{
+            String candidateId = (String)request.getParameter("candidateid");
+            VoteDTO vote = new VoteDTO(candidateId,userID);
+            boolean result = VoteDAO.addVote(vote);
+            CandidateInfo candidate = VoteDAO.getVote(candidateId);
+            if (result == true){
+                session.setAttribute("candidate", candidate);
+            }
+            request.setAttribute("result", result);
+            rd = request.getRequestDispatcher("verifyVote.jsp");
+            
+            
+        }catch(Exception ex){
+            ex.printStackTrace();
+            request.setAttribute("Exception", ex);
+            rd = request.getRequestDispatcher("showException.jsp");
+        }
+        finally{
+            rd.forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -73,3 +104,7 @@ public class AddVoteControllerServlet extends HttpServlet {
     }// </editor-fold>
 
 }
+
+
+
+
