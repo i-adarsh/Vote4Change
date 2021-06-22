@@ -34,13 +34,13 @@ response.sendRedirect("accessDenied.html");
         displayBlock.append("<div id='dv1' onclick='showaddcandidateform()'>"
                             + "<img src='images/addcandidate.png' height='300px' width='300px'>"
                             + "<br><h3>Add Candidate</h3></div>");
-        displayBlock.append("<div id='dv2' onclick='showupdatecandidateform()'>"
+        displayBlock.append("<div id='dv2' onclick='showUpdateCandidateForm()'>"
                             + "<img src='images/update1.jpg' height='300px' width='300px'>"
                             + "<br><h3>Update Candidate</h3></div>");
         displayBlock.append("<div id='dv3' onclick='showcandidate()'>"
                             + "<img src='images/candidate.jpg' height='300px' width='300px'>"
                             + "<br><h3>Show Candidate</h3></div>");
-        displayBlock.append("<div id='dv4' onclick='deleteCandidate()'>"
+        displayBlock.append("<div id='dv4' onclick='showDeleteCandidate()'>"
                             + "<img src='images/update3.jpg' height='300px' width='300px'>"
                             + "<br><h3>Delete Candidate</h3></div>");
         displayBlock.append("</div>");

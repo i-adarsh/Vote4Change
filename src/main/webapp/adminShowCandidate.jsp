@@ -27,8 +27,6 @@
         JSONObject json = new JSONObject();
         json.put("cid", displayBlock.toString());
         out.println(json);
-        
-        System.out.println(displayBlock);
     }
     
     else if (result != null && result.equals("details")){
@@ -45,8 +43,6 @@
         JSONObject json = new JSONObject();
         json.put("subdetails",displayBlock.toString());
         out.println(json);
-        
-        System.out.println(displayBlock);
     }
     
 %>

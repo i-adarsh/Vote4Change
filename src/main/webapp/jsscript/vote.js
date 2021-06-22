@@ -8,9 +8,9 @@ function addVote(){
     
     var id = $('input[type=radio][name=flat]:checked').attr('id');
     data = {candidate:id};
-    $.post("AddVoteContreollerServlet", data, processResponse);
+    $.post("AddVoteControllerServlet", data, processResponse);
 }
-function processResponse(){
+function processResponse(responseText){
     responseText = responseText.trim();
     if (responseText === "success"){
         swal("Success", "Voting done", "success").then((value) => {

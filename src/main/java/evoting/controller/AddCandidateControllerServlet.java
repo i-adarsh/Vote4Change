@@ -48,7 +48,7 @@ public class AddCandidateControllerServlet extends HttpServlet {
         if (candidate != null && candidate.equals("getid")){
             try{
                 String id = CandidateDAO.getNewId();
-                System.out.println("New ID :"+id);
+
                 out.println(id);
                 return;
             }
@@ -60,18 +60,14 @@ public class AddCandidateControllerServlet extends HttpServlet {
         }
         else if(usId != null){
             try{
-                System.out.println("Hii");
+
                 String userName = CandidateDAO.getUserNameById(usId);
                 ArrayList<String> city = CandidateDAO.getCity();
-                System.out.println("Hello");
-                System.out.println(city);
-                System.out.println(city.toString());
                 JSONObject json = new JSONObject();
                 StringBuffer sb = new StringBuffer();
                 for (String c : city){
                     sb.append("<option value='" + c + "'>" + c + "</option>");
                 }
-                System.out.println(sb);
                 if (userName == null)
                     userName = "wrong";
                 json.put("username", userName);

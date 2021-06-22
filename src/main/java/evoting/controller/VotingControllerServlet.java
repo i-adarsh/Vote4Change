@@ -46,10 +46,12 @@ public class VotingControllerServlet extends HttpServlet {
                     String cid = VoteDAO.getCandidateId(userID);
                     if (cid == null){
                         ArrayList<CandidateInfo> candidateList = CandidateDAO.viewCandidate(userID);
+                        System.out.println(candidateList);
                         request.setAttribute("candidateList", candidateList);
                         rd = request.getRequestDispatcher("showCandidate.jsp");
                     }
                     else{
+                        System.out.println("Yha");
                         CandidateInfo candidate = VoteDAO.getVote(cid);
                         request.setAttribute("candidate", candidate);
                         rd = request.getRequestDispatcher("voteDenied.jsp");

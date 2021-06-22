@@ -55,8 +55,6 @@ public class AddNewCandidateControllerServlet extends HttpServlet {
                     //Text Data
                     String value = fit.getString();
                     String fname = fit.getString();
-                    System.out.println("Inside If");
-                    System.out.println(fname + " : " + value);
                     objValues.add(value);
                 }
                 else{
@@ -64,13 +62,7 @@ public class AddNewCandidateControllerServlet extends HttpServlet {
                     inp = fit.getInputStream();
                     String key = fit.getFieldName();
                     String fileName = fit.getName();
-                    System.out.println("Inside Else");
-                    System.out.println(key + " : " + fileName);
-                    
                 }
-            }
-            for (int i = 0; i < objValues.size(); i++){
-                System.out.println(objValues.get(i));
             }
             CandidateDTO candidate = new CandidateDTO(objValues.get(0), objValues.get(3), objValues.get(4), objValues.get(1), inp);
             boolean result = CandidateDAO.addCandidate(candidate);
@@ -82,7 +74,6 @@ public class AddNewCandidateControllerServlet extends HttpServlet {
             }
         }
         catch (Exception ex){
-            System.out.println("Exception in AddNewCandidateController");
             ex.printStackTrace(); 
         }
         finally{

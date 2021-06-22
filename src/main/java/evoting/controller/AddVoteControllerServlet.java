@@ -37,15 +37,18 @@ public class AddVoteControllerServlet extends HttpServlet {
         RequestDispatcher rd = null;
         HttpSession session = request.getSession();
         String userID = (String)session.getAttribute("userID");
+        System.out.println(userID);
         if (userID == null){
             session.invalidate();
             response.sendRedirect("accessDenied.html");
             return;
         }
         try{
-            String candidateId = (String)request.getParameter("candidateid");
+            String candidateId = (String)request.getParameter("candidate");
+            System.out.println(candidateId);
             VoteDTO vote = new VoteDTO(candidateId,userID);
             boolean result = VoteDAO.addVote(vote);
+            System.out.println(result);
             CandidateInfo candidate = VoteDAO.getVote(candidateId);
             if (result == true){
                 session.setAttribute("candidate", candidate);

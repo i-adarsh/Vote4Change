@@ -40,6 +40,22 @@
         <servlet-name>ElectionResultControllerServlet</servlet-name>
         <servlet-class>evoting.controller.ElectionResultControllerServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateCandidateControllerServlet</servlet-name>
+        <servlet-class>evoting.controller.UpdateCandidateControllerServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FinalUpdateCandidateControllerServlet</servlet-name>
+        <servlet-class>evoting.controller.FinalUpdateCandidateControllerServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteCandidateControllerServlet</servlet-name>
+        <servlet-class>evoting.controller.DeleteCandidateControllerServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminDeleteControllerServlet</servlet-name>
+        <servlet-class>evoting.controller.AdminDeleteControllerServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegistrationControllerServlet</servlet-name>
         <url-pattern>/RegistrationControllerServlet</url-pattern>
@@ -79,6 +95,22 @@
     <servlet-mapping>
         <servlet-name>ElectionResultControllerServlet</servlet-name>
         <url-pattern>/ElectionResultControllerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateCandidateControllerServlet</servlet-name>
+        <url-pattern>/UpdateCandidateControllerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FinalUpdateCandidateControllerServlet</servlet-name>
+        <url-pattern>/FinalUpdateCandidateControllerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteCandidateControllerServlet</servlet-name>
+        <url-pattern>/DeleteCandidateControllerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminDeleteControllerServlet</servlet-name>
+        <url-pattern>/AdminDeleteControllerServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

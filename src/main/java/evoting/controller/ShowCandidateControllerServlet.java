@@ -51,7 +51,6 @@ public class ShowCandidateControllerServlet extends HttpServlet {
                 request.setAttribute("result", "candidatelist");
             }
             else{
-                System.out.println(data);
                 CandidateDetails cd = CandidateDAO.getDetailsById(data);
                 request.setAttribute("candidate", cd);
                 request.setAttribute("result", "details");

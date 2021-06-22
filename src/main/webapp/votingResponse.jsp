@@ -24,6 +24,7 @@
                     return;
                 }
             CandidateInfo candidate = (CandidateInfo)session.getAttribute("candidate");
+            System.out.println("Candidate VoResponse: " + candidate);
             StringBuffer displayBlock = new StringBuffer();
             displayBlock.append("<div class='sticky'><div class='candidate'>VOTE FOR CHANGE</div><br>");
             if (candidate == null){

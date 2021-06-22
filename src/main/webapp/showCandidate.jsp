@@ -32,7 +32,9 @@
                 + "</div></div><div class='buttons'>");
                 ArrayList<CandidateInfo> candidateList = (ArrayList<CandidateInfo>)request.getAttribute("candidateList");
                 for (CandidateInfo c : candidateList){
-                    displayBlock.append("<input type='radio' name='flat' id='"+c.getCandidateId()+"' value='"+c.getCandidateId()+"' onclick='addvote()'"+">");
+                    System.out.println("From ShowCandidate");
+//                    System.out.println(c);
+                    displayBlock.append("<input type='radio' name='flat' id='"+c.getCandidateId()+"' value='"+c.getCandidateId()+"' onclick='addVote()'"+">");
                     displayBlock.append("<label for='"+c.getCandidateId()+"'><img src='data:image/jpg;base64,"+c.getSymbol()+"' style='width:300px;height:200px;'/></label>");
                     displayBlock.append("<br /><div class='candidateprofile'><p>Candidate Id:" + c.getCandidateId() + "<br>");
                     displayBlock.append("Candidate Name:" + c.getCandidateName() + "<br>");

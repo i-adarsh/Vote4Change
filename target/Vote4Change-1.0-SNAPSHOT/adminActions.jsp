@@ -34,7 +34,7 @@ out.println("<div class='sticky'><div class='candidate'>VOTE FOR CHANGE</div><br
         "<div class='container'>"+
             "<div id='dv1' onclick='manageuser()'><img src='images/muser.png' height='255px' width='250px'><br><h3>Manage User</h3></div>"+
             "<div id='dv2' onclick='managecandidate()'><img src='images/ManageCandLists.jpg' height='250px' width='250px'><br><h3>Manage Candidate</h3></div>"+
-            "<div id='dv3' onclick='electionresult()'><img src='images/resultgraph.jpg' height='250px' width='250px'><br><h3>Show Result</h3></div>"+
+            "<div id='dv3' onclick='electionResult()'><img src='images/resultgraph.jpg' height='250px' width='250px'><br><h3>Show Result</h3></div>"+
             "<br><br><div align='center' id='result'></div>"+
         "</div>");
         %>

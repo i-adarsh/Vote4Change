@@ -24,7 +24,7 @@ import java.util.Base64;
  * @author adarshkumar
  */
 public class CandidateDAO {
-    private static PreparedStatement ps, ps1, ps2, ps3, ps4,ps5;
+    private static PreparedStatement ps, ps1, ps2, ps3, ps4,ps5,ps6,ps7;
     private static Statement st;
     
     static{
@@ -36,6 +36,8 @@ public class CandidateDAO {
             ps3 = DBConnection.getConnection().prepareStatement("insert into candidate values(?,?,?,?,?)");
             ps4 = DBConnection.getConnection().prepareStatement("Select * from candidate where candidate_id=?");
             ps5 = DBConnection.getConnection().prepareStatement("select candidate_id, username,party,symbol from candidate,user_details where candidate.user_id=user_details.aadhar_no and candidate.city=(select city from user_Details where aadhar_no=?)");
+            ps6 = DBConnection.getConnection().prepareStatement("update candidate set party=?, symbol=?, city=? where candidate_id=?");
+            ps7 = DBConnection.getConnection().prepareStatement("delete from candidate where user_id=?");
         }
         catch (SQLException ex){
             ex.printStackTrace();
@@ -83,6 +85,19 @@ public class CandidateDAO {
         return ps3.executeUpdate() != 0;
     }
     
+    public static boolean updateCandidate(String party, InputStream Symbol, String city, String id) throws SQLException{
+        ps6.setString(1, party);
+        ps6.setBinaryStream(2, Symbol);
+        ps6.setString(3, city);
+        ps6.setString(4, id);
+        return ps6.executeUpdate() != 0;
+    }
+    
+    public static boolean deleteCandidate(String id) throws SQLException{
+        ps7.setString(1, id);
+        return ps7.executeUpdate() != 0;
+    }
+    
     public static ArrayList<String> getCandidateId() throws SQLException{
         ArrayList <String> candidateIdList = new ArrayList<>();
         ResultSet rs = st.executeQuery("select candidate_id from candidate");
@@ -121,8 +136,7 @@ public class CandidateDAO {
             cd.setCandidateNAme(getUserNameById(rs.getString(3)));
             cd.setParty(rs.getString(2));
             cd.setCity(rs.getString(5));
-            cd.setUserId(rs.getString(3)); 
-            
+            cd.setUserId(rs.getString(3));
             return cd;
             
         }

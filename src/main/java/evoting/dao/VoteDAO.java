@@ -63,7 +63,8 @@ public class VoteDAO {
         String base64Image;
         ByteArrayOutputStream outputStream; 
         if (rs.next()){
-            blob = rs.getBlob(4);
+            System.out.println(rs.toString());
+            blob = rs.getBlob(3);
             inputStream = blob.getBinaryStream();
             outputStream = new ByteArrayOutputStream();
             buffer = new byte[4096];
@@ -76,8 +77,8 @@ public class VoteDAO {
             base64Image = en.encodeToString(imageBytes);
             cd.setSymbol(base64Image);
             cd.setCandidateId(candidateid);
-            cd.setCandidateName(rs.getString(2));
-            cd.setParty(rs.getString(3));
+            cd.setCandidateName(rs.getString(1));
+            cd.setParty(rs.getString(2));
         }
         return cd;
     }
