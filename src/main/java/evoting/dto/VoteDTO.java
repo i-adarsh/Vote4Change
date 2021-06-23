@@ -11,9 +11,23 @@ package evoting.dto;
  */
 public class VoteDTO {
 
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
     @Override
     public String toString() {
-        return "VoteDTO{" + "candidateId=" + candidateId + ", voterId=" + voterId + '}';
+        return "VoteDTO{" + "candidateId=" + candidateId + ", voterId=" + voterId + ", gender=" + gender + '}';
+    }
+
+    public VoteDTO(String candidateId, String voterId, String gender) {
+        this.candidateId = candidateId;
+        this.voterId = voterId;
+        this.gender = gender;
     }
 
     public VoteDTO(String candidateId, String voterId) {
@@ -38,4 +52,5 @@ public class VoteDTO {
     }
     private String candidateId;
     private String voterId;
+    private String gender;
 }

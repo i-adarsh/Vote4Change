@@ -42,6 +42,7 @@ public class RegistrationControllerServlet extends HttpServlet {
         user.setEmail(request.getParameter("email"));
         user.setMobile(request.getParameter("mobile"));
         user.setUserName(request.getParameter("username"));
+        user.setGender(request.getParameter("gender"));
         try {
             boolean result = false , userFound = false;
             if (!RegistrationDAO.searchUser(user.getUserID())){

@@ -24,7 +24,7 @@ import java.util.Base64;
  * @author adarshkumar
  */
 public class CandidateDAO {
-    private static PreparedStatement ps, ps1, ps2, ps3, ps4,ps5,ps6,ps7;
+    private static PreparedStatement ps, ps1, ps2, ps3, ps4,ps5,ps6,ps7,ps8;
     private static Statement st;
     
     static{
@@ -38,6 +38,7 @@ public class CandidateDAO {
             ps5 = DBConnection.getConnection().prepareStatement("select candidate_id, username,party,symbol from candidate,user_details where candidate.user_id=user_details.aadhar_no and candidate.city=(select city from user_Details where aadhar_no=?)");
             ps6 = DBConnection.getConnection().prepareStatement("update candidate set party=?, symbol=?, city=? where candidate_id=?");
             ps7 = DBConnection.getConnection().prepareStatement("delete from candidate where user_id=?");
+            ps8 = DBConnection.getConnection().prepareStatement("Select gender from user_details where aadhar_no=?");
         }
         catch (SQLException ex){
             ex.printStackTrace();
@@ -59,6 +60,17 @@ public class CandidateDAO {
     public static String getUserNameById(String uid) throws SQLException{
         ps1.setString(1, uid);
         ResultSet rs = ps1.executeQuery();
+        if (rs.next()){
+            return rs.getString(1);
+        }
+        else{
+            return null;
+        }
+    }
+    
+    public static String getGenderById(String uid) throws SQLException{
+        ps8.setString(1, uid);
+        ResultSet rs = ps8.executeQuery();
         if (rs.next()){
             return rs.getString(1);
         }

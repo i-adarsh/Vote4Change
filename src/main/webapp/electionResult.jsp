@@ -25,8 +25,8 @@
         Map.Entry<CandidateDetails, Integer> e = (Map.Entry)it.next();
         CandidateDetails cd = e.getKey();
         float votePer = (e.getValue()*100.0f)/100;
-        displayBlock.append("<tr><td>"+ cd.getCandidateId() + "</td><td>" + cd.getCandidateName() + "</td><td>" + cd.getParty() + "</td><td><img src='data:image/jpg;base64," +cd.getSymbol() + "' style='width:300px;height:200px;'/></td><td>" + cd.getCity() + "</td><td>" + e.getValue() + "</td><td>" + votePer + "</td><tr>");
-        displayBlock.append("</table>");
-        out.println(displayBlock);
+        displayBlock.append("<tr><td>"+ cd.getCandidateId() + "</td><td>" + cd.getCandidateName() + "</td><td>" + cd.getParty() + "</td><td><img src='data:image/jpg;base64," +cd.getSymbol() + "' style='width:300px;height:200px;'/></td><td>" + cd.getCity() + "</td><td>" + e.getValue() + "</td><td>" + votePer + "</td></tr>");
     }
+    displayBlock.append("</table>");
+    out.println(displayBlock);
 %>

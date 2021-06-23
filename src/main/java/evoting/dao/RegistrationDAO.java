@@ -19,7 +19,7 @@ public class RegistrationDAO {
     static {
         try {
             ps = DBConnection.getConnection().prepareStatement("Select * from user_details where aadhar_no=?");
-            ps1 = DBConnection.getConnection().prepareStatement("Insert into user_details values (?,?,?,?,?,?,?,?)");
+            ps1 = DBConnection.getConnection().prepareStatement("Insert into user_details values (?,?,?,?,?,?,?,?,?)");
         }
         catch (SQLException ex){
             ex.printStackTrace();
@@ -38,6 +38,7 @@ public class RegistrationDAO {
         ps1.setString(6, user.getEmail());
         ps1.setString(7, user.getMobile());
         ps1.setString(8, "Voter");
+        ps1.setString(9, user.getGender());
         return ps1.executeUpdate() == 1;
     }
 }

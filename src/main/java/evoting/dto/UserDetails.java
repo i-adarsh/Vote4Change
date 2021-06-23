@@ -11,10 +11,31 @@ package evoting.dto;
  */
 public class UserDetails {
 
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public UserDetails(String userName, String userID, String email, String address, String mobile, String city, String password, String gender) {
+        this.userName = userName;
+        this.userID = userID;
+        this.email = email;
+        this.address = address;
+        this.mobile = mobile;
+        this.city = city;
+        this.password = password;
+        this.gender = gender;
+    }
+
     @Override
     public String toString() {
-        return "UserDetails{" + "userName=" + userName + ", userID=" + userID + ", email=" + email + ", address=" + address + ", mobile=" + mobile + ", city=" + city + ", password=" + password + '}';
+        return "UserDetails{" + "userName=" + userName + ", userID=" + userID + ", email=" + email + ", address=" + address + ", mobile=" + mobile + ", city=" + city + ", password=" + password + ", gender=" + gender + '}';
     }
+
+    
 
     public String getUserName() {
         return userName;
@@ -72,15 +93,7 @@ public class UserDetails {
         this.password = password;
     }
 
-    public UserDetails(String userName, String userID, String email, String address, String mobile, String city, String password) {
-        this.userName = userName;
-        this.userID = userID;
-        this.email = email;
-        this.address = address;
-        this.mobile = mobile;
-        this.city = city;
-        this.password = password;
-    }
+    
 
     public UserDetails(){
         
@@ -92,4 +105,5 @@ public class UserDetails {
     private String mobile;
     private String city;
     private String password;
+    private String gender;
 }

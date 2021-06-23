@@ -201,6 +201,12 @@ function manageuser() {
     });
 }
 
+function redirectResultPage(){
+    swal("Admin!","Redirecting to Results actions page" , "success").then(value=>{
+       window:location = "resultActions.jsp" 
+    });
+}
+
 function managecandidate() {
     swal("Admin!", "Redirecting To Candidate Management Page!", "success").then(value => {
         window.location = "manageCandidate.jsp";
@@ -278,6 +284,13 @@ function showcandidate() {
 
 function electionResult() {
     $.post("ElectionResultControllerServlet", null, function(responseText) {
+        swal("Result Fetched!", "Success", "success");
+        $("#result").html(responseText.trim());
+    });
+}
+
+function genderResult() {
+    $.post("GenderResultControllerServlet", null, function(responseText) {
         swal("Result Fetched!", "Success", "success");
         $("#result").html(responseText.trim());
     });

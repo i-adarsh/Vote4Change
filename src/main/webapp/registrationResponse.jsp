@@ -8,6 +8,8 @@
 <%
     boolean result = (boolean)request.getAttribute("result");
     boolean userFound = (boolean)request.getAttribute("userFound");
+    String username = (String)request.getAttribute("userName");
+    System.out.println(result);
     if (userFound == true){
         out.println("uap");
     }

@@ -5,6 +5,7 @@
  */
 package evoting.controller;
 
+import evoting.dao.CandidateDAO;
 import evoting.dao.VoteDAO;
 import evoting.dto.CandidateInfo;
 import evoting.dto.VoteDTO;
@@ -46,7 +47,7 @@ public class AddVoteControllerServlet extends HttpServlet {
         try{
             String candidateId = (String)request.getParameter("candidate");
             System.out.println(candidateId);
-            VoteDTO vote = new VoteDTO(candidateId,userID);
+            VoteDTO vote = new VoteDTO(candidateId,userID, CandidateDAO.getGenderById(userID));
             boolean result = VoteDAO.addVote(vote);
             System.out.println(result);
             CandidateInfo candidate = VoteDAO.getVote(candidateId);

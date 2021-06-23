@@ -26,16 +26,18 @@ import java.util.Map;
  * @author adarshkumar
  */
 public class VoteDAO {
-    private static PreparedStatement ps1,ps2,ps3,ps4;
+    private static PreparedStatement ps1,ps2,ps3,ps4,ps5,ps6;
     private static Statement st;
     static{
         try{
             ps1 = DBConnection.getConnection().prepareStatement("Select candidate_id from voting where voter_id=?");
             ps2 = DBConnection.getConnection().prepareStatement("Select candidate_id,username,symbol from candidate,user_details where candidate.user_id=user_details.aadhar_no and candidate.candidate_id=?");
             //and ki jagah where
-            ps3 = DBConnection.getConnection().prepareStatement("Insert into voting values(?,?)");
+            ps3 = DBConnection.getConnection().prepareStatement("Insert into voting values(?,?,?)");
             ps4 = DBConnection.getConnection().prepareStatement("select candidate_id,count(*) as votes_obt from voting group by candidate_id order by votes_obt desc");
             st = DBConnection.getConnection().createStatement();
+            ps5 = DBConnection.getConnection().prepareStatement("select count(*) from voting");
+            ps6 = DBConnection.getConnection().prepareStatement("select count(*) from voting where gender='Male'");
             
         }
         catch (SQLException ex){
@@ -86,8 +88,11 @@ public class VoteDAO {
     public static boolean addVote(VoteDTO obj) throws SQLException{
         ps3.setString(1, obj.getCandidateId());
         ps3.setString(2, obj.getVoterId());
+        ps3.setString(3, obj.getGender());
         return (ps3.executeUpdate() != 0);
     }
+
+    
     public static Map<String,Integer> getResult() throws SQLException{
         Map<String, Integer> result = new LinkedHashMap<>();
         ResultSet rs = ps4.executeQuery();
@@ -96,6 +101,17 @@ public class VoteDAO {
         }
         return result;
     }
+    
+    public static String getGenderPercentage() throws SQLException{
+        ResultSet rs = ps6.executeQuery();
+        rs.next();
+        String num = "" + rs.getInt(1);
+        rs = ps5.executeQuery();
+        rs.next();
+        num += ":" + rs.getInt(1);
+        return num;
+    }
+    
     public static int getVoteCount() throws SQLException{
         
         ResultSet rs = st.executeQuery("select count(*) from voting");

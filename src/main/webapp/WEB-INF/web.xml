@@ -56,6 +56,10 @@
         <servlet-name>AdminDeleteControllerServlet</servlet-name>
         <servlet-class>evoting.controller.AdminDeleteControllerServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GenderResultControllerServlet</servlet-name>
+        <servlet-class>evoting.controller.GenderResultControllerServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegistrationControllerServlet</servlet-name>
         <url-pattern>/RegistrationControllerServlet</url-pattern>
@@ -111,6 +115,10 @@
     <servlet-mapping>
         <servlet-name>AdminDeleteControllerServlet</servlet-name>
         <url-pattern>/AdminDeleteControllerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GenderResultControllerServlet</servlet-name>
+        <url-pattern>/GenderResultControllerServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
