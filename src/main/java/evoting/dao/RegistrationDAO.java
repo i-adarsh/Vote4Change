@@ -29,6 +29,7 @@ public class RegistrationDAO {
         ps.setString(1, userID);
         return ps.executeQuery().next();
     }
+    
     public static boolean registerUser(UserDetails user) throws SQLException{
         ps1.setString(1, user.getUserID());
         ps1.setString(2, user.getPassword());

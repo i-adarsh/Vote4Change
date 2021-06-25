@@ -24,7 +24,7 @@ import java.util.Base64;
  * @author adarshkumar
  */
 public class CandidateDAO {
-    private static PreparedStatement ps, ps1, ps2, ps3, ps4,ps5,ps6,ps7,ps8;
+    private static PreparedStatement ps, ps1, ps2, ps3, ps4,ps5,ps6,ps7,ps8,ps9;
     private static Statement st;
     
     static{
@@ -39,6 +39,7 @@ public class CandidateDAO {
             ps6 = DBConnection.getConnection().prepareStatement("update candidate set party=?, symbol=?, city=? where candidate_id=?");
             ps7 = DBConnection.getConnection().prepareStatement("delete from candidate where user_id=?");
             ps8 = DBConnection.getConnection().prepareStatement("Select gender from user_details where aadhar_no=?");
+            ps9 = DBConnection.getConnection().prepareStatement("select symbol from candidate where party=?");
         }
         catch (SQLException ex){
             ex.printStackTrace();
@@ -119,6 +120,8 @@ public class CandidateDAO {
         return candidateIdList;
     }
     
+    
+    
     public static CandidateDetails getDetailsById(String cid) throws Exception {
         
         ps4.setString(1, cid);
@@ -187,5 +190,38 @@ public class CandidateDAO {
         }
         return candidateList;
     }
+    
+    
+    public static String getSymbolByParty(String party) throws Exception{
+        ps9.setString(1, party);
+        ResultSet rs = ps9.executeQuery();
+        Blob blob;
+        InputStream inputStream;
+        byte []buffer;
+        byte [] imageBytes;
+        int bytesRead;
+        String base64Image;
+        ByteArrayOutputStream outputStream;
+        if(rs.next())
+        {
+            blob = rs.getBlob(1);
+            inputStream = blob.getBinaryStream();
+            outputStream = new ByteArrayOutputStream();
+            buffer = new byte[4096];
+            bytesRead = -1;
+            while((bytesRead = inputStream.read(buffer)) != -1)
+            {
+                outputStream.write(buffer, 0, bytesRead);
+            }
+            imageBytes = outputStream.toByteArray();
+            Base64.Encoder en = Base64.getEncoder();
+            base64Image = en.encodeToString(imageBytes);
+            System.out.println("Insie DAO : "+base64Image);
+            return base64Image;
+        }
+        return null;
+        
+    }
+    
     
 }

@@ -108,6 +108,74 @@ function deleteCandidate() {
     });
 }
 
+function showUsersForm(){
+        
+        $.post("ShowUserDetailsServlet",null,function(responseText){
+            swal("User Details","Success","success");
+            $("#result").html(responseText.trim());
+        });
+}
+
+function showDeleteUsersForm(){
+    removecandidateForm();
+    var newdiv=document.createElement("div");
+    newdiv.setAttribute("id","candidateform");
+    newdiv.setAttribute("float","left");
+    newdiv.setAttribute("padding-left","12px");
+    newdiv.setAttribute("border","solid 2px red");
+    newdiv.innerHTML="<h3>Remove Users</h3>";
+    newdiv.innerHTML = newdiv.innerHTML+"<div style='color:white; font-weight:bold;'>User Id : </div><div><select id='uid'></select></div>";
+    newdiv.innerHTML = newdiv.innerHTML +"<br><span id = 'addresp'></span>";
+    var addcand=$("#result")[0];
+    addcand.appendChild(newdiv);
+    $("#candidateform").hide();
+    $("#candidateform").fadeIn(3500);
+        
+        data = {userId:"userId"};
+        $.post("DeleteUserControllerServlet",data,function(responseText){
+            
+            $("#uid").append(responseText.trim());
+        });
+        
+        $("#uid").change(function(){
+        var uid = $("#uid").val();
+        if(uid === ''){
+            swal("No Selection!", "Please Select an ID","error");
+            return;
+        }
+        data={userId:uid};
+    $.post("DeleteUserControllerServlet",data,function(responseText){
+        clearText();
+        $("#addresp").append(responseText.trim());
+        
+    });
+        
+        
+    });
+        
+}
+
+function deleteChoosenUser(){
+     var uid = $("#uid").val();
+     data = {userId:uid};
+     $.post("DeleteChoosenUserControllerServlet",data,function(responseText){
+        clearText();
+        if(responseText.trim() == "success")
+        {
+            swal("Success","User Deleted Successfully!","success").then( 
+                    value => showDeleteUsersForm()
+                    );
+        }
+        else
+        {
+            swal("Error","Sorry Something went wrong\n User not Deleted","error").then( 
+                    value => showDeleteUsersForm()
+                    );
+        }
+        
+    });
+ }
+
 function showDeleteCandidate() {
     removecandidateForm();
     var newdiv = document.createElement("div");
@@ -283,7 +351,16 @@ function showcandidate() {
 }
 
 function electionResult() {
-    $.post("ElectionResultControllerServlet", null, function(responseText) {
+    data = {type: "candidate"};
+    $.post("ElectionResultControllerServlet", data, function(responseText) {
+        swal("Result Fetched!", "Success", "success");
+        $("#result").html(responseText.trim());
+    });
+}
+
+function electionResultByParty() {
+    data = {type: "party"};
+    $.post("ElectionResultControllerServlet", data, function(responseText) {
         swal("Result Fetched!", "Success", "success");
         $("#result").html(responseText.trim());
     });

@@ -60,6 +60,22 @@
         <servlet-name>GenderResultControllerServlet</servlet-name>
         <servlet-class>evoting.controller.GenderResultControllerServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ShowUserDetailsServlet</servlet-name>
+        <servlet-class>evoting.controller.ShowUserDetailsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteUserControllerSrvlet</servlet-name>
+        <servlet-class>evoting.controller.DeleteUserControllerSrvlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteChoosenUserControllerServlet</servlet-name>
+        <servlet-class>evoting.controller.DeleteChoosenUserControllerServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteUserControllerServlet</servlet-name>
+        <servlet-class>evoting.controller.DeleteUserControllerServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegistrationControllerServlet</servlet-name>
         <url-pattern>/RegistrationControllerServlet</url-pattern>
@@ -119,6 +135,22 @@
     <servlet-mapping>
         <servlet-name>GenderResultControllerServlet</servlet-name>
         <url-pattern>/GenderResultControllerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowUserDetailsServlet</servlet-name>
+        <url-pattern>/ShowUserDetailsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteUserControllerSrvlet</servlet-name>
+        <url-pattern>/DeleteUserControllerSrvlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteChoosenUserControllerServlet</servlet-name>
+        <url-pattern>/DeleteChoosenUserControllerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteUserControllerServlet</servlet-name>
+        <url-pattern>/DeleteUserControllerServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

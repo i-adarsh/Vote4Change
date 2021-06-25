@@ -26,7 +26,7 @@ import java.util.Map;
  * @author adarshkumar
  */
 public class VoteDAO {
-    private static PreparedStatement ps1,ps2,ps3,ps4,ps5,ps6;
+    private static PreparedStatement ps1,ps2,ps3,ps4,ps5,ps6,ps7;
     private static Statement st;
     static{
         try{
@@ -38,6 +38,7 @@ public class VoteDAO {
             st = DBConnection.getConnection().createStatement();
             ps5 = DBConnection.getConnection().prepareStatement("select count(*) from voting");
             ps6 = DBConnection.getConnection().prepareStatement("select count(*) from voting where gender='Male'");
+            ps7 = DBConnection.getConnection().prepareStatement("select  candidate.party, count(*) from candidate, voting where candidate.candidate_id=voting.candidate_id group by candidate.party");
             
         }
         catch (SQLException ex){
@@ -102,6 +103,18 @@ public class VoteDAO {
         return result;
     }
     
+    public static Map<String, Integer> getResultBasedOnParty() throws SQLException {
+        Map<String, Integer> result = new LinkedHashMap<>();
+        ResultSet rs = ps7.executeQuery();
+        while(rs.next())
+        {
+            System.out.println("Party : "+rs.getString(1));
+            System.out.println("Votes Count : "+rs.getInt(2));
+            result.put(rs.getString(1), rs.getInt(2));
+        }
+        return result;
+    }
+    
     public static String getGenderPercentage() throws SQLException{
         ResultSet rs = ps6.executeQuery();
         rs.next();
@@ -115,6 +128,7 @@ public class VoteDAO {
     public static int getVoteCount() throws SQLException{
         
         ResultSet rs = st.executeQuery("select count(*) from voting");
+        System.out.println("Inside DAO");
         if (rs.next()){
             return rs.getInt(1);
         }

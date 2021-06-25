@@ -8,6 +8,7 @@ package evoting.controller;
 import evoting.dao.CandidateDAO;
 import evoting.dao.VoteDAO;
 import evoting.dto.CandidateDetails;
+import evoting.dto.ElectionDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Iterator;
@@ -40,13 +41,15 @@ public class ElectionResultControllerServlet extends HttpServlet {
         RequestDispatcher rd = null;
         HttpSession session = request.getSession();
         String userID = (String)session.getAttribute("userID");
+        String type = request.getParameter("type");
         if (userID == null){
             session.invalidate();
             response.sendRedirect("accessDenied.html");
             return;
         }
         try{
-            Map <String, Integer> result = VoteDAO.getResult();
+            if (type != null && type.equals("candidate")){
+                Map <String, Integer> result = VoteDAO.getResult();
             Set s = result.entrySet();
             Iterator it = s.iterator();
             LinkedHashMap<CandidateDetails, Integer> resultDetails = new LinkedHashMap<>();
@@ -55,9 +58,32 @@ public class ElectionResultControllerServlet extends HttpServlet {
                 CandidateDetails cd = CandidateDAO.getDetailsById(e.getKey());
                 resultDetails.put(cd, e.getValue());
             }
+            
             request.setAttribute("votecount", VoteDAO.getVoteCount());
             request.setAttribute("result", resultDetails);
+            request.setAttribute("resultType", "candidate");
             rd = request.getRequestDispatcher("electionResult.jsp");
+            }
+            else if (type != null && type.equals("party")){
+                System.out.println("Iske Andar");
+                Map<String,Integer> result = VoteDAO.getResultBasedOnParty();
+                Set s = result.entrySet();
+                Iterator it = s.iterator();
+                LinkedHashMap<ElectionDTO , Integer> resultDetails = new LinkedHashMap<>();
+                while(it.hasNext()){
+                    Map.Entry<String, Integer> e = (Map.Entry)it.next();
+                    String symbol = CandidateDAO.getSymbolByParty(e.getKey());
+                    ElectionDTO er = new ElectionDTO(e.getKey(), symbol);
+                    resultDetails.put(er, e.getValue());
+                }
+                System.out.println("Hello Party");
+                request.setAttribute("votecount", VoteDAO.getVoteCount());
+                
+            request.setAttribute("result", resultDetails);
+            request.setAttribute("resultType", "party");
+            rd = request.getRequestDispatcher("electionResult.jsp");
+            }
+            
         }
         catch(Exception ex){
             ex.printStackTrace();
@@ -65,6 +91,7 @@ public class ElectionResultControllerServlet extends HttpServlet {
             rd = request.getRequestDispatcher("showException.jsp");
         }
         finally{
+            System.out.println("inside finally");
             rd.forward(request, response);
         }
     }

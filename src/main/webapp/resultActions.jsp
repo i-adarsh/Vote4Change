@@ -32,7 +32,7 @@
                     "<div class='logout'><a href='login.html'>logout</a></div></div>"+
         "<div class='container'>"+
             "<div id='dv1' onclick='electionResult()'><img src='images/candidateWiseResult.jpeg' height='255px' width='250px'><br><h3>Result Based on Candidate</h3></div>"+
-            "<div id='dv2' onclick=''><img src='images/partyWiseResult.jpeg' height='250px' width='250px'><br><h3>Result Based on Party</h3></div>"+
+            "<div id='dv2' onclick='electionResultByParty()'><img src='images/partyWiseResult.jpeg' height='250px' width='250px'><br><h3>Result Based on Party</h3></div>"+
             "<div id='dv3' onclick='genderResult()'><img src='images/genderWiseResult.png' height='250px' width='250px'><br><h3>Result Based on Gender</h3></div>"+
             "<br><br><div align='center' id='result'></div>"+
         "</div>");
