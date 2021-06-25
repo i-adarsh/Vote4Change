@@ -43,12 +43,15 @@ function addUser() {
 
 function processResponse(responseText, textStatus, xhr) {
     let str = responseText.trim();
+    alert(str);
     if (str === "success") {
         swal("Success !", "Registration Done Successfully! You can now Login", "success");
-        setTimeout(redirectUser, 3000);
-    } else if (str === "uap") {
+//        setTimeout(redirectUser, 3000);
+    }
+    if (str === "uap") {
         swal("Error!", "Sorry the UserID is already Present !!", "error");
-    } else {
+    }
+    else {
         swal("Error!", "Registration Failed !! , Try Again", "error");
     }
 
@@ -78,5 +81,5 @@ function checkEmail() {
 }
 
 function redirectUser() {
-    window.location("login.html");
+    window.location = "login.html";
 }

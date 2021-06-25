@@ -55,7 +55,6 @@ function getdetails(e) {
 function addcandidate() {
     var form = $('#fileUploadForm')[0];
     var data = new FormData(form);
-    alert(data);
     var cid = $("#cid").val();
     var cname = $("#cname").val();
     var city = $("#city").val();
@@ -77,7 +76,7 @@ function addcandidate() {
         timeout: 600000,
         success: function(data) {
             str = data + "....";
-            swal("Admin!", "Candidate Added", "success").then((value) => {
+            swal("Admin!", str, "success").then((value) => {
                 showaddcandidateform();
             });
         },

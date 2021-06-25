@@ -47,10 +47,10 @@ public class RegistrationControllerServlet extends HttpServlet {
             boolean result = false , userFound = false;
             if (!RegistrationDAO.searchUser(user.getUserID())){
                 result = RegistrationDAO.registerUser(user);
+                System.out.println("Result: " + result);
             }
             else{
                 userFound = true;
-                
             }
             request.setAttribute("result", result);
             request.setAttribute("userFound", userFound);

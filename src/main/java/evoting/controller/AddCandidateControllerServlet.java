@@ -59,20 +59,40 @@ public class AddCandidateControllerServlet extends HttpServlet {
             }
         }
         else if(usId != null){
-            try{
-
-                String userName = CandidateDAO.getUserNameById(usId);
+//            try{
+//
+//                String userName = CandidateDAO.getUserNameById(usId);
+//                ArrayList<String> city = CandidateDAO.getCity();
+//                JSONObject json = new JSONObject();
+//                StringBuffer sb = new StringBuffer();
+//                for (String c : city){
+//                    sb.append("<option value='" + c + "'>" + c + "</option>");
+//                }
+//                if (userName == null)
+//                    userName = "wrong";
+//                json.put("username", userName);
+//                json.put("city", sb.toString());
+//                out.println(json);
+//            }
+            try
+            {
+                String username = CandidateDAO.getUserNameById2(usId);
+                System.out.println(username);
                 ArrayList<String> city = CandidateDAO.getCity();
+                System.out.println(city);
                 JSONObject json = new JSONObject();
                 StringBuffer sb = new StringBuffer();
-                for (String c : city){
-                    sb.append("<option value='" + c + "'>" + c + "</option>");
+                for(String c:city)
+                {
+                    sb.append("<option value='"+c+"'>"+c+"</option>");
                 }
-                if (userName == null)
-                    userName = "wrong";
-                json.put("username", userName);
+                System.out.println(sb);
+                if(username == null)
+                    username = "wrong";
+                json.put("username", username);
                 json.put("city", sb.toString());
                 out.println(json);
+                
             }
             catch(SQLException ex){
                 RequestDispatcher rd = request.getRequestDispatcher("showException.jsp");

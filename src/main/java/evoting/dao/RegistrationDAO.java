@@ -40,6 +40,7 @@ public class RegistrationDAO {
         ps1.setString(7, user.getMobile());
         ps1.setString(8, "Voter");
         ps1.setString(9, user.getGender());
+        System.out.println(ps1);
         return ps1.executeUpdate() == 1;
     }
 }

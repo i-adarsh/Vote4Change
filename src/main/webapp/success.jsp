@@ -5,7 +5,7 @@
 --%>
 
 <%
-    String userId = (String)session.getAttribute("userId");
+    String userId = (String)session.getAttribute("userID");
     if(userId == null){
         session.invalidate();
         response.sendRedirect("accessDenied.html");

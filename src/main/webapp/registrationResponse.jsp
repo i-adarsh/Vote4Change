@@ -4,16 +4,17 @@
     Author     : adarshkumar
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
+    <%@page contentType="text/html" pageEncoding="UTF-8"%>
+        <%
     boolean result = (boolean)request.getAttribute("result");
     boolean userFound = (boolean)request.getAttribute("userFound");
     String username = (String)request.getAttribute("userName");
-    System.out.println(result);
+    System.out.println(userFound + "UF");
     if (userFound == true){
         out.println("uap");
     }
-    else if (result == true){
+    if (result == true){
+        System.out.println("true : Success");
         out.println("success");
     }
     else{
@@ -21,13 +22,3 @@
     }
 
 %>
-<!--<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>-->

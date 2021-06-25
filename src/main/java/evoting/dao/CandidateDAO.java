@@ -24,7 +24,7 @@ import java.util.Base64;
  * @author adarshkumar
  */
 public class CandidateDAO {
-    private static PreparedStatement ps, ps1, ps2, ps3, ps4,ps5,ps6,ps7,ps8,ps9;
+    private static PreparedStatement ps, ps1, ps2, ps3, ps4,ps5,ps6,ps7,ps8,ps9,ps10,ps11;
     private static Statement st;
     
     static{
@@ -40,6 +40,8 @@ public class CandidateDAO {
             ps7 = DBConnection.getConnection().prepareStatement("delete from candidate where user_id=?");
             ps8 = DBConnection.getConnection().prepareStatement("Select gender from user_details where aadhar_no=?");
             ps9 = DBConnection.getConnection().prepareStatement("select symbol from candidate where party=?");
+            ps10 = DBConnection.getConnection().prepareStatement("select candidate_id from candidate where city=? AND party=?");
+            ps11 = DBConnection.getConnection().prepareStatement("select username from user_details where aadhar_no=? AND aadhar_no NOT IN (select user_id from candidate)");
         }
         catch (SQLException ex){
             ex.printStackTrace();
@@ -221,6 +223,34 @@ public class CandidateDAO {
         }
         return null;
         
+    }
+    
+    public static boolean checkCandidate(String city, String party) throws Exception
+    {
+        ps10.setString(1, city);
+        ps10.setString(2, party);
+        ResultSet rs = ps10.executeQuery();
+        if(rs.next())
+            return true;
+        else 
+            return false;
+    }
+    
+    
+    public static String getUserNameById2(String userid) throws SQLException 
+    {
+        ps11.setString(1, userid);
+        ResultSet rs = ps11.executeQuery();
+        if(rs.next())
+        {
+            System.out.println("Inside getUserNameById Name : "+rs.getString(1));
+            return rs.getString(1);
+        }
+        else
+        {
+            
+            return null;
+        }
     }
     
     

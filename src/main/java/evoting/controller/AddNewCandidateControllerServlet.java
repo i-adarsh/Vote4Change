@@ -64,8 +64,15 @@ public class AddNewCandidateControllerServlet extends HttpServlet {
                     String fileName = fit.getName();
                 }
             }
-            CandidateDTO candidate = new CandidateDTO(objValues.get(0), objValues.get(3), objValues.get(4), objValues.get(1), inp);
-            boolean result = CandidateDAO.addCandidate(candidate);
+            boolean checkCandidate = CandidateDAO.checkCandidate(objValues.get(4), objValues.get(3));
+            boolean result = false;
+            System.out.println("Candidate is Present : "+checkCandidate);
+            if(checkCandidate == false)
+            {
+                CandidateDTO candidate = new CandidateDTO(objValues.get(0),objValues.get(3),objValues.get(4),objValues.get(1),inp);
+                result = CandidateDAO.addCandidate(candidate);
+            }
+            
             if (result){
                 rd = request.getRequestDispatcher("success.jsp");
             }
