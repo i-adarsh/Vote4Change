@@ -24,7 +24,7 @@ import java.util.Base64;
  * @author adarshkumar
  */
 public class CandidateDAO {
-    private static PreparedStatement ps, ps1, ps2, ps3, ps4,ps5,ps6,ps7,ps8,ps9,ps10,ps11;
+    private static PreparedStatement ps, ps1, ps2, ps3, ps4,ps5,ps6,ps7,ps8,ps9,ps10,ps11,ps12;
     private static Statement st;
     
     static{
@@ -37,7 +37,7 @@ public class CandidateDAO {
             ps4 = DBConnection.getConnection().prepareStatement("Select * from candidate where candidate_id=?");
             ps5 = DBConnection.getConnection().prepareStatement("select candidate_id, username,party,symbol from candidate,user_details where candidate.user_id=user_details.aadhar_no and candidate.city=(select city from user_Details where aadhar_no=?)");
             ps6 = DBConnection.getConnection().prepareStatement("update candidate set party=?, symbol=?, city=? where candidate_id=?");
-            ps7 = DBConnection.getConnection().prepareStatement("delete from candidate where user_id=?");
+            ps7 = DBConnection.getConnection().prepareStatement("delete from candidate where candidate_id=?");
             ps8 = DBConnection.getConnection().prepareStatement("Select gender from user_details where aadhar_no=?");
             ps9 = DBConnection.getConnection().prepareStatement("select symbol from candidate where party=?");
             ps10 = DBConnection.getConnection().prepareStatement("select candidate_id from candidate where city=? AND party=?");

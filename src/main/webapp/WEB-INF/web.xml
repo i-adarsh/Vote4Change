@@ -76,6 +76,10 @@
         <servlet-name>DeleteUserControllerServlet</servlet-name>
         <servlet-class>evoting.controller.DeleteUserControllerServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteChoosenCandidateControllerServlet</servlet-name>
+        <servlet-class>evoting.controller.DeleteChoosenCandidateControllerServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegistrationControllerServlet</servlet-name>
         <url-pattern>/RegistrationControllerServlet</url-pattern>
@@ -151,6 +155,10 @@
     <servlet-mapping>
         <servlet-name>DeleteUserControllerServlet</servlet-name>
         <url-pattern>/DeleteUserControllerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteChoosenCandidateControllerServlet</servlet-name>
+        <url-pattern>/DeleteChoosenCandidateControllerServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

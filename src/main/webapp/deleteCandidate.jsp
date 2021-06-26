@@ -40,7 +40,7 @@
         displayBlock.append("<tr><th>Party:</th><td>" + cd.getParty() + "</td></tr>");
         displayBlock.append("<tr><th>Symbol:</th><td>" + str + "</td></tr>");
         displayBlock.append("</table>");
-        displayBlock.append("<input type='button' value='Delete' onclick='deleteCandidate()'>");
+        displayBlock.append("<input type='button' value='Delete' onclick='deleteChoosenCandidate()'>");
         displayBlock.append("<p id='delete' hidden>"+ cd.getUserId() + "</p>");
         JSONObject json = new JSONObject();
         json.put("subdetails",displayBlock.toString());

@@ -43,12 +43,11 @@ function addUser() {
 
 function processResponse(responseText, textStatus, xhr) {
     let str = responseText.trim();
-    alert(str);
-    if (str === "success") {
+    if (str == "success") {
         swal("Success !", "Registration Done Successfully! You can now Login", "success");
-//        setTimeout(redirectUser, 3000);
+        setTimeout(redirectUser, 3000);
     }
-    if (str === "uap") {
+    else if (str == "uap") {
         swal("Error!", "Sorry the UserID is already Present !!", "error");
     }
     else {

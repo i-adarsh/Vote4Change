@@ -85,24 +85,81 @@ function addcandidate() {
         }
     });
 }
+//
+//function deleteCandidate() {
+//    $.ajax({
+//        type: "POST",
+//        enctype: 'multipart/form-data',
+//        url: "AdminDeleteControllerServlet",
+//        processData: false,
+//        contentType: false,
+//        cache: false,
+//        timeout: 600000,
+//        success: function(data) {
+//            str = data + "....";
+//            swal("Admin!", "Candidate Deleted", "success").then((value) => {
+//                showDeleteCandidate();
+//            });
+//        },
+//        error: function(e) {
+//            swal("Admin!", e, "error");
+//        }
+//    });
+//}
 
-function deleteCandidate() {
-    $.ajax({
-        type: "POST",
-        enctype: 'multipart/form-data',
-        url: "AdminDeleteControllerServlet",
-        processData: false,
-        contentType: false,
-        cache: false,
-        timeout: 600000,
-        success: function(data) {
-            str = data + "....";
-            swal("Admin!", "Candidate Added", "success").then((value) => {
-                showDeleteCandidate();
-            });
-        },
-        error: function(e) {
-            swal("Admin!", e, "error");
+function deleteCandidate(){
+    
+    removecandidateForm();
+    var newdiv=document.createElement("div");
+    newdiv.setAttribute("id","candidateform");
+    newdiv.setAttribute("float","left");
+    newdiv.setAttribute("padding-left","12px");
+    newdiv.setAttribute("border","solid 2px red");
+    newdiv.innerHTML="<h3>Delete Candidate</h3>";
+    newdiv.innerHTML = newdiv.innerHTML+"<div style='color:white; font-weight:bold;'>Candidate Id : </div><div><select id='cid'></select></div>"
+
+    newdiv.innerHTML = newdiv.innerHTML +"<br><span id = 'addresp'></span>"
+    var addcand=$("#result")[0];
+addcand.appendChild(newdiv);
+$("#candidateform").hide();
+$("#candidateform").fadeIn(3500);
+
+ data={data:"cid"};
+
+    $.post("DeleteCandidateControllerServlet",data,function(responseText){
+        
+        var candidateIdList = JSON.parse(responseText);
+        
+        $("#cid").append(candidateIdList.cid);
+        
+    });
+    $("#cid").change(function(){
+        var cid = $("#cid").val();
+        if(cid === ''){
+            swal("No Selection!", "Please Select an ID","error");
+            return;
+        }
+        data={data:cid};
+    $.post("DeleteCandidateControllerServlet",data,function(responseText){
+        clearText();
+        
+        var details = JSON.parse(responseText);
+        $("#addresp").append(details.subdetails);
+        
+    });
+        
+        
+    });
+}
+function deleteChoosenCandidate(){
+    var cid = $("#cid").val();
+    data = {"data": cid};
+    $.post("DeleteChoosenCandidateControllerServlet",data,function(responseText){
+        if (responseText.trim() == "success"){
+            swal("Success !","Candidate Deleted Successfully","success");
+        }
+        else{
+            swal("Failed !","Something Went Wrong .. Try Again !","error");
         }
     });
 }
@@ -213,7 +270,6 @@ function showDeleteCandidate() {
 function updateCandidate() {
     var form = $('#fileUploadForm')[0];
     var data = new FormData(form);
-    alert(data);
     var cid = $("#cid").val();
     var city = $("#city").val();
     var party = $("#party").val();
