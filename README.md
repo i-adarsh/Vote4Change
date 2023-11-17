@@ -71,5 +71,7 @@ Alter table voting add constraint vt_vid_fk foreign key(voter_id) references use
 
 ##### If you Face any difficulties or you have any doubt on the flow of project make sure to connect with me on LinkedIn I'm attaching the link of my linkedIn profile below :
 
+```https://www.linkedin.com/in/adarsh-kr/```
+
 
 
